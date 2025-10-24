@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html  >
+<head>
+  <!-- Site made with Mobirise Website Builder v6.1.4, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v6.1.4, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
+  <meta name="description" content="">
+  
+  
+  <title>Compra de entrada</title>
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Bellota+Text:300,300i,400,400i,700,700i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bellota+Text:300,300i,400,400i,700,700i&display=swap"></noscript>
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=3rHTy8"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=3rHTy8" type="text/css">
+
+  
+  
+  
+</head>
+<body>
+  
+  <!-- Menú canónico -->
+<section data-bs-version="5.1" class="menu menu1 cid-sFGMsvHDIa" once="menu" id="menu1-1">
+    <nav class="navbar navbar-dropdown navbar-expand-lg" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-logo" href="index.html">
+                    <img src="assets/images/logo.png" alt="Teatro Municipal" style="height:3rem;">
+                </a>
+                <span class="navbar-caption-wrap">
+                    <a class="navbar-caption text-white text-primary display-7" href="index.html">Teatro Municipal - Venta de Entradas</a>
+                </span>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <div class="hamburger"><span></span><span></span><span></span><span></span></div>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                    <li class="nav-item"><a class="nav-link link text-white text-primary display-7" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link link text-white text-primary display-7" href="page3.html">Cartelera</a></li>
+                    <li class="nav-item"><a class="nav-link link text-white text-primary display-7" href="page1.html">Salas</a></li>
+                    <li class="nav-item"><a class="nav-link link text-white text-primary display-7" href="page2.html">Registro</a></li>
+                </ul>
+                <div class="navbar-buttons mbr-section-btn"><a class="btn btn-primary display-4" href="page4.html">Compra</a></div>
+            </div>
+        </div>
+    </nav>
+</section>
+
+<!-- Sección Compra de entrada -->
+<section class="form5 cid-sFGTcFRqw0" id="compra">
+    <div class="container">
+        <div class="mbr-section-head text-center">
+            <h2 class="mbr-section-title mbr-fonts-style display-2"><strong>Compra de entradas</strong></h2>
+            <p class="mbr-section-subtitle mbr-fonts-style display-5">Complete el formulario para finalizar su compra.</p>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-6">
+                <form id="purchaseForm" class="mbr-form form-with-styler">
+                    <div class="form-group mb-3">
+                        <label>Espectáculo</label>
+                        <select id="showSelect" class="form-control">
+                            <option value="FrankCarlitos" data-price="160" data-date="2025-09-25">Cuando Frank conoció a Carlitos - $160</option>
+                            <option value="ElDivorcio" data-price="130" data-date="2025-10-05">El divorcio del año - $130</option>
+                            <option value="ElSecreto" data-price="140" data-date="2025-10-20">El Secreto - $140</option>
+                            <option value="FuncionSaleMal" data-price="110" data-date="2025-11-02">La función que sale mal - $110</option>
+                            <option value="CosasMaravillosas" data-price="100" data-date="2025-11-22">Las cosas maravillosas - $100</option>
+                            <option value="QuienEsQuien" data-price="140" data-date="2025-11-15">¿Quién es quién? - $140</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Fecha</label>
+                        <input type="date" id="showDate" class="form-control" required>
+                    </div>
+
+                    <!-- Reemplazado: campo cantidad -> campo asientos seleccionado + hidden qty -->
+                    <div class="form-group mb-3">
+                        <label>Asientos seleccionados</label>
+                        <div class="input-group">
+                            <input type="text" id="seatInput" class="form-control" placeholder="Ninguno" readonly>
+                            <button type="button" id="openSeatsBtn" class="btn btn-secondary">Elegir asientos</button>
+                        </div>
+                        <!-- qty oculto (se sincroniza con la selección de asientos) -->
+                        <input type="hidden" id="qty" value="1">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label>Forma de pago</label>
+                        <select id="paymentMethod" class="form-control">
+                            <option>Tarjeta</option>
+                            <option>Transferencia</option>
+                            <option>Pago en efectivo (en boletería)</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Total:</strong> $<span id="totalPrice">150</span>
+                    </div>
+                    <!-- Se eliminó el openSeatsBtn duplicado aquí; queda el botón inline -->
+                    <div class="d-flex gap-2 mb-3">
+                        <button type="submit" class="btn btn-primary">Confirmar compra</button>
+                    </div>
+                    <div id="purchaseMsg" class="mt-3" role="status" aria-live="polite"></div>
+                </form>
+
+                <!-- Sección integrada: selector de asientos -->
+                <div id="seatsSection" style="display:none; margin-top:1.5rem;">
+                    <h5>Seleccionar asientos</h5>
+                    <div class="stage" style="width:100%;text-align:center;padding:8px;background:#222;color:#fff;border-radius:6px;margin-bottom:12px;">ESCENARIO</div>
+                    <div id="seatsMap" class="d-flex flex-column align-items-center"></div>
+                    <div class="mt-3">
+                        <p>Seleccionados: <span id="selectedCount">0</span> — Total asientos: $<span id="selectedTotal">0</span></p>
+                        <button id="applySeatsBtn" class="btn btn-primary" disabled>Aplicar asientos a la compra</button>
+                        <button id="closeSeatsBtn" class="btn btn-secondary ms-2">Cerrar</button>
+                    </div>
+                </div>
+
+                <div id="purchaseSummary" class="mt-4" style="display:none;">
+                    <h5>Resumen de la compra</h5>
+                    <div id="summaryContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Script para calcular total y simular confirmación -->
+<script>
+function updateTotal(){
+    var sel = document.getElementById('showSelect');
+    var price = parseFloat(sel.options[sel.selectedIndex].dataset.price || 0);
+    // leer qty desde el campo oculto
+    var qty = parseInt(document.getElementById('qty').value) || 1;
+    document.getElementById('totalPrice').innerText = (price*qty).toFixed(2);
+}
+document.getElementById('showSelect').addEventListener('change', updateTotal);
+// qty es oculto; no se muestra input, pero mantenemos evento en caso de que cambie por script
+document.getElementById('qty').addEventListener('input', updateTotal);
+
+/* --- Selector de asientos integrado (ajustes para rellenar seatInput) --- */
+(function(){
+    var params = new URLSearchParams(window.location.search);
+    var s = params.get('show');
+    var d = params.get('date');
+    var action = params.get('action');
+    var seatsParam = params.get('seats');
+
+    var priceMap = {};
+    (function(){ var sel = document.getElementById('showSelect'); for(var i=0;i<sel.options.length;i++){ priceMap[sel.options[i].value]=parseFloat(sel.options[i].dataset.price||0); } })();
+
+    // --- NUEVO: gestión de fecha automática por espectáculo ---
+    var lastAutoSetDate = null; // guarda la fecha que la app puso automáticamente
+    var showSelectEl = document.getElementById('showSelect');
+    var showDateEl = document.getElementById('showDate');
+
+    function getDefaultDateForSelectedShow(){
+        var opt = showSelectEl.options[showSelectEl.selectedIndex];
+        return opt ? opt.dataset.date || '' : '';
+    }
+
+    // Si viene show en la URL, preseleccionar
+    if(s){
+        var sel = document.getElementById('showSelect');
+        for(var i=0;i<sel.options.length;i++){
+            if(sel.options[i].value.toLowerCase() === s.toLowerCase()){ sel.selectedIndex = i; break; }
+        }
+    }
+
+    // Si viene date en la URL, usarla; si no, usar la fecha por defecto de la opción seleccionada
+    if(d){
+        try{ showDateEl.value = d; lastAutoSetDate = null; }catch(err){}
+    } else {
+        var defaultDate = getDefaultDateForSelectedShow();
+        if(defaultDate){
+            try{ showDateEl.value = defaultDate; lastAutoSetDate = defaultDate; }catch(err){}
+        }
+    }
+
+    // Si el usuario modifica manualmente la fecha, evitar sobreescribirla después
+    showDateEl.addEventListener('input', function(){ lastAutoSetDate = null; });
+
+    // Al cambiar el espectáculo: setear fecha por defecto si el campo está vacío o si fue puesto automáticamente antes
+    showSelectEl.addEventListener('change', function(){
+        updateTotal();
+        var defaultDate = getDefaultDateForSelectedShow();
+        if(defaultDate){
+            var currentDate = (showDateEl.value||'').trim();
+            if(!currentDate || currentDate === lastAutoSetDate){
+                showDateEl.value = defaultDate;
+                lastAutoSetDate = defaultDate;
+            }
+        }
+        // si el selector de asientos está abierto, re-renderizar (mantiene ocupación consistente)
+        if(document.getElementById('seatsSection').style.display !== 'none') renderSeats();
+    });
+
+    /* ...resto del script de asientos (sin cambios funcionales) ... */
+    var rows = 8, cols = 10;
+    var selected = [];
+    function seededRandom(seed){
+        var h=0; for(var i=0;i<seed.length;i++)h = (h<<5)-h + seed.charCodeAt(i);
+        return function(){ h = Math.imul(h, 48271) % 2147483647; return (h & 0x7fffffff)/2147483647; };
+    }
+    function renderSeats(preselect){
+        selected = [];
+        var map = document.getElementById('seatsMap');
+        map.innerHTML = '';
+        var show = document.getElementById('showSelect').value || '';
+        var date = document.getElementById('showDate').value || d || '';
+        var rng = seededRandom((show||'') + (date||''));
+        for(var r=0;r<rows;r++){
+            var rowDiv = document.createElement('div');
+            for(var c=0;c<cols;c++){
+                var seatId = String.fromCharCode(65+r) + (c+1);
+                var btn = document.createElement('div');
+                btn.className = 'seat available';
+                btn.dataset.seat = seatId;
+                btn.innerText = seatId;
+                if(rng() < 0.15){ btn.className = 'seat occupied'; }
+                if(preselect && preselect.indexOf(seatId)>=0 && btn.className!=='seat occupied'){ btn.className='seat selected'; selected.push(seatId); }
+                (function(b){
+                    b.addEventListener('click', function(){
+                        if(b.classList.contains('occupied')) return;
+                        if(b.classList.contains('selected')){
+                            b.classList.remove('selected'); b.classList.add('available');
+                            selected = selected.filter(s=>s!==b.dataset.seat);
+                        } else {
+                            b.classList.remove('available'); b.classList.add('selected');
+                            selected.push(b.dataset.seat);
+                        }
+                        refreshSeatsState();
+                    });
+                })(btn);
+                rowDiv.appendChild(btn);
+            }
+            map.appendChild(rowDiv);
+        }
+        refreshSeatsState();
+    }
+    function refreshSeatsState(){
+        var selCount = selected.length;
+        var show = document.getElementById('showSelect').value || '';
+        var price = priceMap[show]||0;
+        document.getElementById('selectedCount').innerText = selCount;
+        document.getElementById('selectedTotal').innerText = (selCount * price).toFixed(2);
+        document.getElementById('applySeatsBtn').disabled = selCount === 0;
+        // sincronizar qty oculto con selección de asientos
+        if(selCount>0) document.getElementById('qty').value = selCount;
+        updateTotal();
+    }
+
+    var seatsSection = document.getElementById('seatsSection');
+    // abrir selector desde el botón inline
+    document.getElementById('openSeatsBtn').addEventListener('click', function(){
+        seatsSection.style.display = '';
+        renderSeats(seatsParam ? decodeURIComponent(seatsParam).split(',') : null);
+        window.scrollTo({top: seatsSection.offsetTop-20, behavior:'smooth'});
+    });
+    document.getElementById('closeSeatsBtn').addEventListener('click', function(){ seatsSection.style.display='none'; });
+
+    // aplicar selección: rellenar campo visible seatInput y sincronizar qty
+    document.getElementById('applySeatsBtn').addEventListener('click', function(){
+        // asignar al campo visible
+        var seatInput = document.getElementById('seatInput');
+        seatInput.value = selected.length ? selected.join(',') : '';
+        // qty ya sincronizado en refreshSeatsState
+        seatsSection.style.display='none';
+        document.getElementById('purchaseMsg').innerText = 'Se aplicaron ' + selected.length + ' asientos.';
+    });
+
+    if(action === 'seats'){
+        seatsSection.style.display = '';
+        renderSeats(seatsParam ? decodeURIComponent(seatsParam).split(',') : null);
+    }
+
+    // submit: preferir seatInput si está rellenado
+    var purchaseForm = document.getElementById('purchaseForm');
+    purchaseForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        var show = document.getElementById('showSelect').value;
+        var date = document.getElementById('showDate').value;
+        // qty viene del campo oculto
+        var qtyVal = parseInt(document.getElementById('qty').value) || 1;
+        var total = document.getElementById('totalPrice').innerText;
+        if(!date){ document.getElementById('purchaseMsg').innerText = 'Seleccione una fecha.'; return; }
+        // preferir seatInput
+        var seatsFromInput = document.getElementById('seatInput').value.trim();
+        var seatsList = seatsFromInput || (selected.length ? selected.join(',') : (new URLSearchParams(window.location.search).get('seats') || ''));
+        document.getElementById('purchaseMsg').innerText = 'Compra realizada con éxito.';
+        var content = '<p><strong>Espectáculo:</strong> '+show+'</p>'+
+                      '<p><strong>Fecha:</strong> '+date+'</p>'+
+                      '<p><strong>Cantidad:</strong> '+qtyVal+'</p>'+
+                      '<p><strong>Total:</strong> $'+total+'</p>';
+        if(seatsList){ content += '<p><strong>Asientos:</strong> '+seatsList+'</p>'; }
+        document.getElementById('summaryContent').innerHTML = content;
+        document.getElementById('purchaseSummary').style.display = 'block';
+        this.reset();
+        selected = [];
+        // limpiar campo visible
+        document.getElementById('seatInput').value = '';
+        updateTotal();
+    });
+
+})();
+</script>
+
+<!-- Añadir estilos para butacas (mismo archivo, evitando tocar css global) -->
+<style>
+    /* filepath: d:\UNJU - APU\TERCER AÑO\HIA\TP EXPERIENCIA DE USUARIO\page4.html (inline seats styles) */
+    .seat{ width:40px;height:40px;margin:6px;border-radius:6px;border:1px solid #ccc;display:inline-flex;align-items:center;justify-content:center;cursor:pointer; user-select:none; }
+    .seat.available{ background:#f8f9fa; color:#222; }
+    .seat.selected{ background:#4d6d9a;color:white; }
+    .seat.occupied{ background:#ddd; cursor:not-allowed; color:#777; }
+</style>
+<!-- Footer canónico -->
+<section data-bs-version="5.1" class="footer7 cid-sFGSOnwtIp" once="footers" id="footer7-8">
+    <div class="container">
+        <div class="media-container-row align-center mbr-white">
+            <div class="col-12">
+                <p class="mbr-text mb-0 mbr-fonts-style display-7">
+                    © Teatro Municipal 2025 — Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </div>
+</section><section class="display-7" style="padding: 0;align-items: center;justify-content: center;flex-wrap: wrap;    align-content: center;display: flex;position: relative;height: 4rem;"><a href="https://mobiri.se/4281425" style="flex: 1 1;height: 4rem;position: absolute;width: 100%;z-index: 1;"><img alt="" style="height: 4rem;" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></a><p style="margin: 0;text-align: center;" class="display-7">&#8204;</p><a style="z-index:1" href="https://mobirise.com/builder/ai-website-creator.html">AI Website Creator</a></section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  
+  
+  
+</body>
+</html>

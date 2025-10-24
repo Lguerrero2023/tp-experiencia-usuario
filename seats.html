@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Seleccionar asientos</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <style>
+    /* Mapa de butacas simple */
+    .seat { width:40px;height:40px;margin:6px;border-radius:6px;border:1px solid #ccc;display:inline-flex;align-items:center;justify-content:center;cursor:pointer; }
+    .seat.available{ background:#f8f9fa; }
+    .seat.selected{ background:#4d6d9a;color:white; }
+    .seat.occupied{ background:#ddd; cursor:not-allowed; color:#777; }
+    .stage{ width:100%; text-align:center; padding:8px; background:#222;color:white;border-radius:6px;margin-bottom:12px;}
+  </style>
+</head>
+<body class="mbr-site">
+<div class="container py-4">
+  <div class="row">
+    <div class="col-12 text-center mb-3">
+      <h3>Elegir asientos</h3>
+      <p id="showInfo" class="mb-0"></p>
+    </div>
+    <div class="col-12">
+      <div class="stage">ESCENARIO</div>
+      <div id="seatsMap" class="d-flex flex-column align-items-center"></div>
+    </div>
+    <div class="col-12 mt-3">
+      <p>Seleccionados: <span id="selectedCount">0</span> — Total: $<span id="selectedTotal">0</span></p>
+      <button id="continueBtn" class="btn btn-primary" disabled>Continuar a compra</button>
+      <a id="backCartelera" class="btn btn-secondary ms-2" href="page3.html">Volver a cartelera</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Leer params
+  var params = new URLSearchParams(window.location.search);
+  var show = params.get('show') || 'Desconocido';
+  var date = params.get('date') || '';
+  var priceMap = { 'Bernarda':150, 'ComediaOtoño':120, 'MusicaTeatro':180, 'ViajePajaros':80, 'MonologosCiudad':90, 'TributoMusical':160 };
+  var price = priceMap[show] || 120;
+
+  document.getElementById('showInfo').innerText = 'Espectáculo: ' + show + (date ? ' — Fecha: ' + date : '');
+
+  // Simular sala: 8 filas x 10 columnas
+  var rows = 8, cols = 10;
+  var seatsMap = document.getElementById('seatsMap');
+  var selected = [];
+
+  // Simular butacas ocupadas (seeded by show+date so consistent)
+  function seededRandom(seed){
+    var h=0; for(var i=0;i<seed.length;i++)h = (h<<5)-h + seed.charCodeAt(i);
+    return function(){ h = Math.imul(h, 48271) % 2147483647; return (h & 0x7fffffff)/2147483647; };
+  }
+  var rng = seededRandom((show||'') + (date||''));
+  var occupiedSet = {};
+  for(var r=0;r<rows;r++){
+    var rowDiv = document.createElement('div');
+    for(var c=0;c<cols;c++){
+      var seatId = String.fromCharCode(65+r) + (c+1);
+      var btn = document.createElement('div');
+      btn.className = 'seat available';
+      btn.dataset.seat = seatId;
+      // marcar algunos como ocupados
+      if(rng() < 0.15){ btn.className = 'seat occupied'; occupiedSet[seatId]=true; }
+      btn.innerText = seatId;
+      (function(b){
+        b.addEventListener('click', function(){
+          if(b.classList.contains('occupied')) return;
+          if(b.classList.contains('selected')){
+            b.classList.remove('selected'); b.classList.add('available');
+            selected = selected.filter(s=>s!==b.dataset.seat);
+          } else {
+            b.classList.remove('available'); b.classList.add('selected');
+            selected.push(b.dataset.seat);
+          }
+          refresh();
+        });
+      })(btn);
+      rowDiv.appendChild(btn);
+    }
+    seatsMap.appendChild(rowDiv);
+  }
+
+  function refresh(){
+    document.getElementById('selectedCount').innerText = selected.length;
+    document.getElementById('selectedTotal').innerText = (selected.length * price).toFixed(2);
+    document.getElementById('continueBtn').disabled = selected.length === 0;
+  }
+
+  document.getElementById('continueBtn').addEventListener('click', function(){
+    var seatsParam = encodeURIComponent(selected.join(','));
+    var target = 'page4.html?show=' + encodeURIComponent(show) + (date ? '&date=' + encodeURIComponent(date) : '') + '&seats=' + seatsParam;
+    window.location.href = target;
+  });
+})();
+</script>
+</body>
+</html>
